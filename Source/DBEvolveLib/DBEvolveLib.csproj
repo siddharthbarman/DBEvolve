@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>SByteStream.DBEvolve</RootNamespace>
+	<LangVersion>8.0</LangVersion>
+	<Nullable>enable</Nullable>
+	<AssemblyName>SByteStream.DBEvolveLib</AssemblyName>
+	<Title>DBEvolve - database migration library</Title>
+	<Authors>Siddharth R Barman</Authors>
+	<Description>DBEvolve is a lightweight, deterministic database migration library for .NET that automates database creation, schema evolution, and version tracking using versioned SQL scripts.
+
+DBEvolve can:
+- Create a database if it does not exist
+- Execute SQL migration scripts in a controlled order
+- Track the current database version
+- Apply only the required scripts to upgrade an existing database
+
+Each migration script contains its version in the filename, allowing DBEvolve to determine exactly which scripts need to run based on the current database state. This makes upgrades predictable, repeatable, and safe across environments.
+
+Key features:
+- Automatic database creation
+- Version-based migration execution
+- Persistent schema version tracking
+- Idempotent upgrades (only new scripts are applied)
+- Validates that applied scripts haven't been modified using SHA-256 hashes
+- Simple, script-first migration model
+- Designed for CI/CD and automated deployments
+
+DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, and full control over how database changes are applied—without heavyweight configuration or ORM coupling.</Description>
+	<Copyright>Copyright (c) 2026, Siddharth R Barman</Copyright>
+	<PackAsTool>False</PackAsTool>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
+	<PackageIcon>data-migration.png</PackageIcon>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<RepositoryUrl>https://github.com/siddharthbarman/DBEvolve</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<PackageTags>database-migration; sql-server; dotnet; schema-versioning; sql-scripts; ci-cd; deterministic-migrations; migration-tool; devops; dbops</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS0618</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CS0618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data-migration.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

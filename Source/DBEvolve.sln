@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBEvolver", "DBEvolve\DBEvolver.csproj", "{504AC530-E1B2-4D5F-BDA6-8E724DED9371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{45054617-55F2-436A-BC39-49F56551193B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBEvolveLib", "DBEvolveLib\DBEvolveLib.csproj", "{CF3B85EC-623B-4510-B7AC-0327FB131413}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{504AC530-E1B2-4D5F-BDA6-8E724DED9371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504AC530-E1B2-4D5F-BDA6-8E724DED9371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504AC530-E1B2-4D5F-BDA6-8E724DED9371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504AC530-E1B2-4D5F-BDA6-8E724DED9371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45054617-55F2-436A-BC39-49F56551193B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45054617-55F2-436A-BC39-49F56551193B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45054617-55F2-436A-BC39-49F56551193B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45054617-55F2-436A-BC39-49F56551193B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3B85EC-623B-4510-B7AC-0327FB131413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3B85EC-623B-4510-B7AC-0327FB131413}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3B85EC-623B-4510-B7AC-0327FB131413}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3B85EC-623B-4510-B7AC-0327FB131413}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E73407CC-EDF7-4824-AC30-CEBC681608CC}
+	EndGlobalSection
+EndGlobal
