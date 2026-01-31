@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBEvolver", "DBEvolve\DBEvolver.csproj", "{504AC530-E1B2-4D5F-BDA6-8E724DED9371}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBEvolver", "DBEvolver\DBEvolver.csproj", "{504AC530-E1B2-4D5F-BDA6-8E724DED9371}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{45054617-55F2-436A-BC39-49F56551193B}"
 EndProject

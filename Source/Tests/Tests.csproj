@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBEvolveLib\DBEvolveLib.csproj" />
-    <ProjectReference Include="..\DBEvolve\DBEvolver.csproj" />    
+    <ProjectReference Include="..\DBEvolver\DBEvolver.csproj" />    
   </ItemGroup>
 
   <ItemGroup>

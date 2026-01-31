@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "DBEvolver": {
+      "commandName": "Project",
+      "commandLineArgs": "-c \"Data Source=localhost; Initial Catalog=foo; User Id=Siddharth; Integrated Security=True;\" -n SchemaVersions -t 60"
+    }
+  }
+}
