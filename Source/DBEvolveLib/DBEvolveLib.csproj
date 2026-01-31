@@ -38,6 +38,8 @@ DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, 
 	<RepositoryUrl>https://github.com/siddharthbarman/DBEvolve</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
 	<PackageTags>database-migration; sql-server; dotnet; schema-versioning; sql-scripts; ci-cd; deterministic-migrations; migration-tool; devops; dbops</PackageTags>
+	<PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -47,6 +49,13 @@ DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;CS0618</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.TXT">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />

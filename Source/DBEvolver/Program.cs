@@ -6,12 +6,12 @@ namespace SByteStream.DBEvolve
     {
         static void Help()
         {
-            Console.WriteLine("dbmaint is a database maintenance utility which can do the following:");
+            Console.WriteLine("DBEvoler is a database maintenance utility which can do the following:");
             Console.WriteLine("1. Create a database");
             Console.WriteLine("2. Migrate a database to the latest version");
             Console.WriteLine();
             Console.WriteLine("Syntax:");
-            Console.WriteLine("  dbmaint -c <connection string> -f <scripts folder> -v <version> -n <version tablename>");
+            Console.WriteLine("  dbevolver -c <connection string> -f <scripts folder> -v <version> -n <version tablename>");
             Console.WriteLine();
             Console.WriteLine("Parameters:");
             Console.WriteLine("  -c: Connection string including the database name.");
@@ -20,12 +20,12 @@ namespace SByteStream.DBEvolve
             Console.WriteLine("  -n: Specifies the name of the version table. Optional. Default is __Version_History__");
             Console.WriteLine();
             Console.WriteLine("Example:");
-            Console.WriteLine("  dbmaint -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\"");
-            Console.WriteLine("  dbmaint -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -n SchemaVersions");
-            Console.WriteLine("  dbmaint -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -f .\\scripts");
-            Console.WriteLine("  dbmaint -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -v 101");
-            Console.WriteLine("  dbmaint -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -f .\\scripts");
-            Console.WriteLine("  dbmaint -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -v 101 -f .\\scripts");
+            Console.WriteLine("  dbevolver -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\"");
+            Console.WriteLine("  dbevolver -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -n SchemaVersions");
+            Console.WriteLine("  dbevolver -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -f .\\scripts");
+            Console.WriteLine("  dbevolver -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -v 101");
+            Console.WriteLine("  dbevolver -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -f .\\scripts");
+            Console.WriteLine("  dbevolver -c \"Data Source=localhost; Initial Catalog=MyAppDb; User Id=TestUser; Password=password123; Integrated Security=False;\" -v 101 -f .\\scripts");
         }
 
         static void Main(string[] args)
@@ -70,7 +70,7 @@ namespace SByteStream.DBEvolve
             }
             catch (Exception ex)
             {
-                logger.LogError("Error running DBEvolver: {0}", ex);
+                logger.LogError("Error running dbevolver: {0}", ex);
             }
 
         }

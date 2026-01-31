@@ -1,10 +1,3 @@
-﻿-- DBEVOLVE: NO_TRANSACTION
-
-create view ReconStatusView as
-select * from ReconStatus;   
+﻿create view BooksView as
+select * from Books;   
 GO
-
-create view ReconStatusView2 as
-select * from ReconStatus;
-
-

@@ -6,9 +6,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>dbevolver</AssemblyName>
-	<AssemblyVersion>1.0.8.9527</AssemblyVersion>
-	<FileVersion>1.0.8.9527</FileVersion>
+    <AssemblyVersion>1.0.8.9527</AssemblyVersion>
+    <FileVersion>1.0.8.9527</FileVersion>
     <RootNamespace>SByteStream.DBEvolve</RootNamespace>
+    <Title>DBEvolver</Title>
+    <Authors>Siddharth B Barman</Authors>
+    <Description>DBEvolver is a lightweight, script-first database migration tool for .NET that applies versioned SQL changes safely and repeatably across environments.</Description>
+    <PackageProjectUrl>https://github.com/siddharthbarman/DBEvolve</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/siddharthbarman/DBEvolve</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>database;evolution;migration;schema;upgrade;maintenance;sql;dbevolver;versioning;ci;cd;tool</PackageTags>
+    <PackAsTool>True</PackAsTool>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,11 +33,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include=".\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="dbscripts\V01_00__initial_schema.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="dbscripts\V01_01__view.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include=".\LICENSE.TXT">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include=".\readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
