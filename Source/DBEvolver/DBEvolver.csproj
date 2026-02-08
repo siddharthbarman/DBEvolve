@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DBEvolveLib.MySql\DBEvolveLib.MqSql.csproj" />
+    <ProjectReference Include="..\DBEvolveLib.Postgres\DBEvolveLib.Postgres.csproj" />
+    <ProjectReference Include="..\DBEvolveLib.SqlServer\DBEvolveLib.SqlServer.csproj" />
     <ProjectReference Include="..\DBEvolveLib\DBEvolveLib.csproj" />
   </ItemGroup>
 
@@ -37,10 +40,22 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Update="dbscripts\V01_00__initial_schema.sql">
+    <None Update="dbscripts\MySql\V01_00__initial_schema.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="dbscripts\V01_01__view.sql">
+    <None Update="dbscripts\MySql\V01_01__view.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="dbscripts\Postgres\V01_00__initial_schema.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="dbscripts\Postgres\V01_01__view.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="dbscripts\SqlServer\V01_00__initial_schema.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="dbscripts\SqlServer\V01_01__view.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include=".\LICENSE.TXT">

@@ -4,7 +4,15 @@
       "commandName": "WSL2",
       "distributionName": ""
     },
-    "DBEvolver": {
+    "Postgres": {
+      "commandName": "Project",
+      "commandLineArgs": " -t Postgres -c \"Server=localhost; Port=5432; Database=MyAppDb; UserId=postgres; Password=password123;\" -f .\\dbscripts\\Postgres"
+    },
+    "MySql": {
+      "commandName": "Project",
+      "commandLineArgs": "-t MySql -c \"Server=localhost; port=3306; Uid=root; Pwd=password123; Database=MyAppDb; Connection Timeout=30; SslMode=None;\" -f .\\dbscripts\\MySql"
+    },
+    "SqlServer": {
       "commandName": "Project",
       "commandLineArgs": "-c \"Data Source=localhost; Initial Catalog=foo; User Id=Siddharth; Integrated Security=True;\" -n SchemaVersions -t 60"
     }

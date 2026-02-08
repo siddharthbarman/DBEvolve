@@ -1,12 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SByteStream.DBEvolve
 {
-    public class DBEvolver
-    {
+    public class SqlServerDBEvolver
+    {        
         public void Evolve(ILogger logger, string connectionString, string scriptsDirectory, 
             string versionTableName = "__Version_History__", int maxVersion = 0, int commandTimeoutSec = 30)
         {
@@ -16,6 +13,6 @@ namespace SByteStream.DBEvolve
                 mgr.ValidateScripts(scriptsDirectory);
                 mgr.RunScripts(scriptsDirectory, maxVersion);
             }
-        }
+        }        
     }
 }

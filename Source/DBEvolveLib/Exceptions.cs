@@ -24,4 +24,11 @@ namespace SByteStream.DBEvolve
         {
         }
     }
+
+    public class DbManagerNotFound : DBEvolveException
+    {
+        public DbManagerNotFound(string message) : base(message)
+        {
+        }
+    }
 }

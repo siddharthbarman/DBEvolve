@@ -5,10 +5,10 @@
     <RootNamespace>SByteStream.DBEvolve</RootNamespace>
 	<LangVersion>8.0</LangVersion>
 	<Nullable>enable</Nullable>
-	<AssemblyName>SByteStream.DBEvolveLib</AssemblyName>
+	<AssemblyName>SByteStream.DBEvolveLib.Postgres</AssemblyName>
 	<AssemblyVersion>1.0.8.9527</AssemblyVersion>
 	<FileVersion>1.0.8.9527</FileVersion>
-	<Title>DBEvolve - database migration library</Title>
+	<Title>DBEvolve - database migration library for Postgres</Title>
 	<Authors>Siddharth R Barman</Authors>
 	<Description>DBEvolve is a lightweight, deterministic database migration library for .NET that automates database creation, schema evolution, and version tracking using versioned SQL scripts.
 
@@ -30,9 +30,16 @@ Key features:
 - Designed for CI/CD and automated deployments
 
 DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, and full control over how database changes are applied—without heavyweight configuration or ORM coupling.</Description>
-	<Copyright>Copyright (c) 2026, Siddharth R Barman</Copyright>	
+	<Copyright>Copyright (c) 2026, Siddharth R Barman</Copyright>
+	<PackAsTool>False</PackAsTool>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
+	<PackageIcon>data-migration.png</PackageIcon>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<RepositoryUrl>https://github.com/siddharthbarman/DBEvolve</RepositoryUrl>
-	<RepositoryType>git</RepositoryType>	
+	<RepositoryType>git</RepositoryType>
+	<PackageTags>database-migration; sql-server; dotnet; schema-versioning; sql-scripts; ci-cd; deterministic-migrations; migration-tool; devops; dbops</PackageTags>
+	<PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -52,7 +59,11 @@ DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <PackageReference Include="Npgsql" Version="7.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBEvolveLib\DBEvolveLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

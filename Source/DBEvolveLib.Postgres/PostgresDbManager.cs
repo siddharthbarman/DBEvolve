@@ -1,22 +1,24 @@
 ﻿using Microsoft.Extensions.Logging;
+using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 
 namespace SByteStream.DBEvolve
 {
-    public class SqlServerDbManager : DbManagerBase
+    internal class PostgresDbManager : DbManagerBase
     {
-        public SqlServerDbManager(ILogger logger) : base(logger)
+        public PostgresDbManager(ILogger logger) : base(logger)
         {
         }
 
         public override void CreateDbConnection()
         {
             Logger?.LogInformation("Creating database connection.");
-            m_conn = new SqlConnection(ConnectionString);
+            m_conn = new NpgsqlConnection(ConnectionString);
             m_conn.Open();
             Logger?.LogInformation("Database connection created successfully.");
         }
@@ -24,15 +26,17 @@ namespace SByteStream.DBEvolve
         public override void CreateVersionHistoryTable()
         {
             Logger?.LogInformation($"Checking existence of {m_versionHistoryTableName} table.");
-            using (SqlCommand cmd = CreateSqlCommand("select count(1) from sys.tables where name = @tableName", m_conn!))
+            
+            using (NpgsqlCommand cmd = CreateSqlCommand("select count(1) from information_schema.tables where table_schema = 'public' AND table_name = @tableName", m_conn!))
             {
-                cmd.Parameters.AddWithValue("@tableName", m_versionHistoryTableName);
-                int result = (int)cmd.ExecuteScalar();
+                cmd.Parameters.AddWithValue("tableName", m_versionHistoryTableName!);                                              
+                Int64 result = (Int64)cmd.ExecuteScalar()!;
+
                 if (result == 0)
                 {
                     Logger?.LogInformation($"{m_versionHistoryTableName} table does not exist, will create it.");
                     string createTableSql = string.Format(VERSION_HISTORY_TABLE_SCRIPT, m_versionHistoryTableName);
-                    using (SqlCommand createCmd = CreateSqlCommand(createTableSql, m_conn!))
+                    using (NpgsqlCommand createCmd = CreateSqlCommand(createTableSql, m_conn!))
                     {
                         createCmd.ExecuteNonQuery();
                     }
@@ -47,10 +51,10 @@ namespace SByteStream.DBEvolve
 
             List<ScriptFile> scriptFiles = new List<ScriptFile>();
             
-            using (SqlCommand cmd = CreateSqlCommand($"select VersionNumber, Filename, FileHash from [{m_versionHistoryTableName}] order by VersionNumber", 
+            using (IDbCommand cmd = CreateSqlCommand($"select VersionNumber, Filename, FileHash from \"{m_versionHistoryTableName}\" order by VersionNumber", 
                 m_conn!))
-            {
-                using (SqlDataReader reader = cmd.ExecuteReader())
+            {                
+                using (IDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -71,18 +75,18 @@ namespace SByteStream.DBEvolve
         {
             Logger?.LogInformation("Attemping to create target database if not present.");
 
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(ConnectionString);
+            NpgsqlConnectionStringBuilder builder = new NpgsqlConnectionStringBuilder(ConnectionString);
             builder.ConnectionString = ConnectionString;
-            string databaseName = builder.InitialCatalog;
-            builder.InitialCatalog = "master";
+            string databaseName = builder.Database!;
+            builder.Database = "postgres";
 
-            using (SqlConnection conn = new SqlConnection(builder.ToString()))
+            using (NpgsqlConnection conn = new NpgsqlConnection(builder.ToString()))
             {
                 conn.Open();
                 if (!CheckDbExists(conn, databaseName))
                 {
                     Logger?.LogInformation("Creating target database: {0}.", databaseName);
-                    using (SqlCommand cmd = CreateSqlCommand($"CREATE DATABASE [{databaseName}]", conn))
+                    using (NpgsqlCommand cmd = CreateSqlCommand($"CREATE DATABASE \"{databaseName}\"", conn))
                     {
                         cmd.ExecuteNonQuery();
                     }
@@ -161,13 +165,14 @@ namespace SByteStream.DBEvolve
 
             string insertSql = string.Format(INSERT_SCRIPT_ENTRY_FMT, m_versionHistoryTableName);
             
-            using (SqlCommand cmd = CreateSqlCommand(insertSql, m_conn!))
+            using (NpgsqlCommand cmd = CreateSqlCommand(insertSql, m_conn!))
             {
                 if (m_tran != null)
                 {
                     cmd.Transaction = m_tran;
                 }
-                cmd.Parameters.AddWithValue("@versionNo", scriptFile.Version);
+                
+                cmd.Parameters.AddWithValue("versionNo", scriptFile.Version);
                 cmd.Parameters.AddWithValue("@fileName", scriptFile.FilePath);
                 cmd.Parameters.AddWithValue("@fileHash", scriptFile.FileHash);
                 cmd.ExecuteNonQuery();
@@ -187,7 +192,7 @@ namespace SByteStream.DBEvolve
 
             try
             {
-                using (SqlCommand cmd = CreateSqlCommand(sql, m_conn!))
+                using (IDbCommand cmd = CreateSqlCommand(sql, m_conn!))
                 {
                     if (m_tran != null)
                     {
@@ -209,7 +214,7 @@ namespace SByteStream.DBEvolve
 
             int version;
 
-            using (SqlCommand cmd = CreateSqlCommand($"select max(VersionNumber) from [{m_versionHistoryTableName}]", 
+            using (IDbCommand cmd = CreateSqlCommand($"select max(VersionNumber) from \"{m_versionHistoryTableName}\"", 
                 m_conn!))
             {
                 object result = cmd.ExecuteScalar();
@@ -230,36 +235,37 @@ namespace SByteStream.DBEvolve
             }
         }
 
-        private bool CheckDbExists(SqlConnection conn, string dbName)
+        private bool CheckDbExists(NpgsqlConnection conn, string dbName)
         {
-            using (SqlCommand cmd = CreateSqlCommand($"select count(1) from sys.databases where name = @dbName", conn))
-            {            
-                cmd.Parameters.AddWithValue("@dbName", dbName);
-                int result = (int)cmd.ExecuteScalar();
+            using (NpgsqlCommand cmd = CreateSqlCommand($"SELECT count(1) FROM pg_database WHERE datname=@dbName", conn))            
+            {
+                cmd.Parameters.AddWithValue("dbName", dbName);                
+                System.Int64 result  = (System.Int64)cmd.ExecuteScalar()!;
                 return result > 0;
             }
         }
 
-        private SqlCommand CreateSqlCommand(string sqlText, SqlConnection conn)
+        private NpgsqlCommand CreateSqlCommand(string sqlText, NpgsqlConnection conn)
         {
-            return new SqlCommand(sqlText, conn)
-            {
-                CommandTimeout = CommandTimeoutSec
-            };
+            return new NpgsqlCommand(sqlText, conn)
+            {                
+                CommandType = CommandType.Text,
+                CommandTimeout = CommandTimeoutSec                
+            };            
         }
         
-        private const string VERSION_HISTORY_TABLE_SCRIPT = @"create table [{0}]
+        private const string VERSION_HISTORY_TABLE_SCRIPT = @"create table ""{0}""
         (
 	        VersionNumber int not null primary key,
-	        Filename nvarchar(512) not null,
-            FileHash varbinary(32) not null,
-	        EntryDate datetime constraint [DF_{0}_EntryDate] default (getutcdate())
+	        Filename varchar(512) not null,
+            FileHash bytea not null,
+	        EntryDate TIMESTAMPTZ NOT NULL DEFAULT (now() AT TIME ZONE 'UTC')
         )";
 
-        private const string INSERT_SCRIPT_ENTRY_FMT = "insert into [{0}](VersionNumber, Filename, FileHash) values(@versionNo, @fileName, @fileHash);";
+        private const string INSERT_SCRIPT_ENTRY_FMT = "insert into \"{0}\"(VersionNumber, Filename, FileHash) values(@versionNo, @fileName, @fileHash);";
 
 
-        private SqlConnection? m_conn;
-        private SqlTransaction? m_tran;
+        private NpgsqlConnection? m_conn;
+        private NpgsqlTransaction? m_tran;
     }
 }
