@@ -6,8 +6,11 @@ At its core, DBEvolve executes ordered SQL migration scripts, tracks their execu
 
 The solution is split into three main parts:
 
-* **DBEvolveLib** – the reusable migration engine (library)
-* **DBEvolve** – a command-line interface (CLI) built on top of the library
+* **DBEvolveLib** – the reusable migration engine (core engine)
+* **DBEvolveLib.MySql** – MySql specific migration
+* **DBEvolveLib.Postgres** – Postgres specific migration
+* **DBEvolveLib.SqlServer** – SqlServer specific migration
+* **DBEvolver** – a command-line interface (CLI) built on top of the vendor specific libraries
 * **Tests** – automated tests and sample migration scripts
 
 ---
@@ -16,8 +19,11 @@ The solution is split into three main parts:
 
 ```text
 DBEvolve/
-├─ DBEvolveLib/     # Core migration library
-├─ DBEvolve/        # Command-line tool (CLI)
+├─ DBEvolveLib/           # Core migration library
+├─ DBEvolveLib.MySql/     # MySql specific migration
+├─ DBEvolveLib.Postgres/  # Postgres specific migration
+├─ DBEvolveLib.SqlServer/ # SqlServer specific migration
+├─ DBEvolver/             # Command-line tool (CLI) which works with MySql, Postgres and SqlServer
 ├─ Tests/           # Automated tests + sample SQL scripts
 ```
 
@@ -27,7 +33,9 @@ DBEvolve/
 
 **Purpose:**
 
-DBEvolveLib contains all the core logic required to perform database migrations. This project is intended to be consumed either by the DBEvolve CLI or directly embedded into other .NET applications.
+DBEvolveLib contains all the core logic required to perform database migrations. This project is used by 
+vendor specific database migration code i.e. by DBEvolveLib.MySql, DBEvolveLib.Postgres and DBEvolveLib.SqlServer 
+libraries. 
 
 **Key Responsibilities:**
 
@@ -39,10 +47,8 @@ DBEvolveLib contains all the core logic required to perform database migrations.
 
 **Important Files:**
 
-* `DBEvolver.cs` – Central migration orchestration logic
 * `IDbManager.cs` – Abstraction for database-specific operations
 * `DbManagerBase.cs` – Base implementation for database managers
-* `SqlServerDbManager.cs` – SQL Server–specific implementation
 * `ScriptFile.cs` – Represents a versioned SQL script (e.g. `V01_00__init.sql`)
 * `Exceptions.cs` – Custom exception types
 * `Utils.cs` – Shared helper utilities
@@ -55,11 +61,84 @@ This project produces a NuGet package (`SByteStream.DBEvolveLib`) that can be re
 
 ---
 
-## DBEvolve (Command-Line Tool)
+## DBEvolveLib.MySql
 
 **Purpose:**
 
-DBEvolve is a thin CLI wrapper around `DBEvolveLib`. It provides a simple command-line interface for applying migrations without writing any application code.
+This library is available as a nuget package on nuget.org & is intended to be consumed by developers 
+wishing to add database migration for MySql facility to their application. 
+
+**Key Responsibilities:**
+
+* Implements the extension points required for migrating a MySql database
+* MySql specific code for interacting with a MySql database
+
+**Important Files:**
+* `MySqlDBEvolver.cs` - The main class which a developer needs to intiate and use to peform a database migration.
+* `MySqlDbManager.cs` - Internal class which has MySql specific code. 
+
+**Target Frameworks:**
+
+* .NET Standard (for maximum compatibility)
+
+This project produces a NuGet package (`SByteStream.DBEvolveLib.MySql`) that can be reused across tools and applications.
+
+---
+
+## DBEvolveLib.Postgres
+
+**Purpose:**
+
+This library is available as a nuget package on nuget.org & is intended to be consumed by developers 
+wishing to add database migration for Postgres facility to their application. 
+
+**Key Responsibilities:**
+
+* Implements the extension points required for migrating a Postgres database
+* Postgres specific code for interacting with a MySql database
+
+**Important Files:**
+* `PostgresDBEvolver.cs` - The main class which a developer needs to intiate and use to peform a database migration.
+* `PostgresDbManager.cs` - Internal class which has Postgres specific code. 
+
+**Target Frameworks:**
+
+* .NET Standard (for maximum compatibility)
+
+This project produces a NuGet package (`SByteStream.DBEvolveLib.Postgres`) that can be reused across tools and applications.
+
+---
+
+## DBEvolveLib.SqlServer
+
+**Purpose:**
+
+This library is available as a nuget package on nuget.org & is intended to be consumed by developers 
+wishing to add database migration for SqlServer facility to their application. 
+
+**Key Responsibilities:**
+
+* Implements the extension points required for migrating a SqlServer database
+* SqlServer specific code for interacting with a MySql database
+
+**Important Files:**
+* `SqlServerDBEvolver.cs` - The main class which a developer needs to intiate and use to peform a database migration.
+* `SqlServerDbManager.cs` - Internal class which has Postgres specific code. 
+
+**Target Frameworks:**
+
+* .NET Standard (for maximum compatibility)
+
+This project produces a NuGet package (`SByteStream.DBEvolveLib.SqlServer`) that can be reused across tools and applications.
+
+---
+
+## DBEvolver (Command-Line Tool)
+
+**Purpose:**
+
+DBEvolver is a CLI application which uses all three database libraries to run database migrations against MySql, 
+Postgres and SqlServer. It provides a simple command-line interface for applying migrations without writing any application code.
 
 **Key Responsibilities:**
 
