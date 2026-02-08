@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>dbevolver</AssemblyName>
-	<AssemblyVersion>1.3.9.9535</AssemblyVersion>
-	<FileVersion>1.3.9.9535</FileVersion>
+	<AssemblyVersion>1.3.8.9535</AssemblyVersion>
+	<FileVersion>1.3.8.9535</FileVersion>
     <RootNamespace>SByteStream.DBEvolve</RootNamespace>
     <Title>DBEvolver</Title>
     <Authors>Siddharth B Barman</Authors>
@@ -45,19 +45,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="dbscripts\MySql\V01_01__view.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="dbscripts\Postgres\V01_00__initial_schema.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="dbscripts\Postgres\V01_01__view.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="dbscripts\SqlServer\V01_00__initial_schema.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="dbscripts\SqlServer\V01_01__view.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include=".\LICENSE.TXT">
       <Pack>True</Pack>

@@ -100,7 +100,7 @@ docker pull mysql:8.0.45
 docker run --name mysql -e MYSQL_ROOT_PASSWORD=password123 -p 3306:3306 -d mysql:8.0.45
 docker stop mysql
 docker rm mysql
-docker image rm mysql:5.7.22
+docker image rm mysql:8.0.45
 ```
 
 ### DBeaver settings
