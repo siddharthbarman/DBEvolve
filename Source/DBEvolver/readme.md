@@ -2,7 +2,9 @@
 
 `dbevolver` is a lightweight database maintenance tool designed to simplify database creation and 
 schema evolution. It is part of the **SByteStream.DBEvolve** package and leverages `Microsoft.Extensions.Logging` 
-for logging. It makes use of the DBEvolveLib library (available on nuget.org) for its core functions.
+for logging. It makes use of the DBEvolve - database migration library for MySql, DBEvolve - database migration 
+library for Postgres & the DBEvolve - database migration library for SqlServer libraries (available on nuget.org) 
+for its core functions.
 
 ## ✨ Features
 - Create a new database from scripts.
@@ -14,8 +16,8 @@ for logging. It makes use of the DBEvolveLib library (available on nuget.org) fo
 
 ## Supported databases
 - SqlServer (supported)
-- MySQL (planned)
-- PostgreSQL (planned)
+- MySQL (5.7+, 8.X, 9.X supported)
+- PostgreSQL (14, 15, 16,17, 18 supported)
 
 
 ## Installing

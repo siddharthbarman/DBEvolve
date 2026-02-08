@@ -6,8 +6,8 @@
 	<LangVersion>8.0</LangVersion>
 	<Nullable>enable</Nullable>
 	<AssemblyName>SByteStream.DBEvolveLib.MySql</AssemblyName>
-	<AssemblyVersion>1.0.8.9527</AssemblyVersion>
-	<FileVersion>1.0.8.9527</FileVersion>
+	<AssemblyVersion>1.2.8.9527</AssemblyVersion>
+	<FileVersion>1.2.8.9527</FileVersion>
 	<Title>DBEvolve - database migration library for MySql</Title>
 	<Authors>Siddharth R Barman</Authors>
 	<Description>DBEvolve is a lightweight, deterministic database migration library for .NET that automates database creation, schema evolution, and version tracking using versioned SQL scripts.
@@ -17,6 +17,7 @@ DBEvolve can:
 - Execute SQL migration scripts in a controlled order
 - Track the current database version
 - Apply only the required scripts to upgrade an existing database
+- This library is for use with MySql 5.7+, 8.X, 9.X
 
 Each migration script contains its version in the filename, allowing DBEvolve to determine exactly which scripts need to run based on the current database state. This makes upgrades predictable, repeatable, and safe across environments.
 
@@ -37,9 +38,10 @@ DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, 
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<RepositoryUrl>https://github.com/siddharthbarman/DBEvolve</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
-	<PackageTags>database-migration; sql-server; dotnet; schema-versioning; sql-scripts; ci-cd; deterministic-migrations; migration-tool; devops; dbops</PackageTags>
+	<PackageTags>MySql 5.7+, 8.X, 9.X, database-migration; DotNet6; DotNet8; DotNet10; .NET Framework 4.6.1+; schema-versioning; sql-scripts; ci-cd; deterministic-migrations; migration-tool; devops; dbops</PackageTags>
 	<PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

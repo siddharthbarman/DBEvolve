@@ -21,7 +21,7 @@ DBEvolve is a lightweight, deterministic database migration library for .NET tha
 ## Supported Databases
 - SQL Server
 - PostgreSQL 
-- MySQL (Supported by this library)
+- MySQL 5.7+, 8.X, 9.X (Supported by this library)
 
 ## Installation
 Install the NuGet package:

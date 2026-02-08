@@ -6,8 +6,8 @@
 	<LangVersion>8.0</LangVersion>
 	<Nullable>enable</Nullable>
 	<AssemblyName>SByteStream.DBEvolveLib</AssemblyName>
-	<AssemblyVersion>1.0.8.9527</AssemblyVersion>
-	<FileVersion>1.0.8.9527</FileVersion>
+	<AssemblyVersion>1.2.18.9535</AssemblyVersion>
+	<FileVersion>1.2.18.9535</FileVersion>
 	<Title>DBEvolve - database migration library</Title>
 	<Authors>Siddharth R Barman</Authors>
 	<Description>DBEvolve is a lightweight, deterministic database migration library for .NET that automates database creation, schema evolution, and version tracking using versioned SQL scripts.

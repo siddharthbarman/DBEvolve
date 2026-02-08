@@ -75,7 +75,7 @@ namespace SByteStream.DBEvolve
         {
             Logger?.LogInformation("Attemping to create target database if not present.");
 
-            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder(ConnectionString);
+            MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder(ConnectionString!);
             builder.ConnectionString = ConnectionString;
             
             string databaseName = builder.Database!;

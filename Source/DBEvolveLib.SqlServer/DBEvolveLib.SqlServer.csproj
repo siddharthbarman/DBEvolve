@@ -6,8 +6,8 @@
 	<LangVersion>8.0</LangVersion>
 	<Nullable>enable</Nullable>
 	<AssemblyName>SByteStream.DBEvolveLib.SqlServer</AssemblyName>
-	<AssemblyVersion>1.0.8.9527</AssemblyVersion>
-	<FileVersion>1.0.8.9527</FileVersion>
+	<AssemblyVersion>1.2.8.9527</AssemblyVersion>
+	<FileVersion>1.2.8.9527</FileVersion>
 	<Title>DBEvolve - database migration library for SqlServer</Title>
 	<Authors>Siddharth R Barman</Authors>
 	<Description>DBEvolve is a lightweight, deterministic database migration library for .NET that automates database creation, schema evolution, and version tracking using versioned SQL scripts.
@@ -40,6 +40,7 @@ DBEvolve is ideal for teams that prefer explicit SQL scripts, clear versioning, 
 	<PackageTags>database-migration; sql-server; dotnet; schema-versioning; sql-scripts; ci-cd; deterministic-migrations; migration-tool; devops; dbops</PackageTags>
 	<PackageLicenseFile>LICENSE.TXT</PackageLicenseFile>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
