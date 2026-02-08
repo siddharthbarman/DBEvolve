@@ -4,7 +4,7 @@ DBEvolve is a lightweight, versioned database migration tool for SQL Server, ins
 
 At its core, DBEvolve executes ordered SQL migration scripts, tracks their execution state, and ensures your database schema evolves safely and repeatably across environments.
 
-The solution is split into three main parts:
+The solution is split into following parts:
 
 * **DBEvolveLib** – the reusable migration engine (core engine)
 * **DBEvolveLib.MySql** – MySql specific migration
@@ -12,6 +12,7 @@ The solution is split into three main parts:
 * **DBEvolveLib.SqlServer** – SqlServer specific migration
 * **DBEvolver** – a command-line interface (CLI) built on top of the vendor specific libraries
 * **Tests** – automated tests and sample migration scripts
+* **PackageTesting** - sample application for testing MySql, Postgres and SqlServer DBEvolve packages
 
 ---
 
